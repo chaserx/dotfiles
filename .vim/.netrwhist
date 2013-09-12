@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/chase/.bash_it'
+let g:netrw_dirhist_2='/Users/chase/.bash_it/aliases'
+let g:netrw_dirhist_3='/Users/chase/.bash_it/aliases/available'
+let g:netrw_dirhist_4='/Users/chase/.bash_it/themes/bobby'
+let g:netrw_dirhist_5='/Users/chase/.berkshelf'
+let g:netrw_dirhist_6='/Users/chase/.vim'

@@ -1,0 +1,26 @@
+[user]
+	name = Chase Southard
+	email = chase.southard@gmail.com
+[github]
+	user = chaserx
+	token = abc123 
+[mergetool]
+	keepBackup = true
+[core]
+[push]
+	default = current
+[color]
+	ui = true
+[alias]
+        down = pull
+        onup = push
+        co = checkout
+        st = status
+	l1 = log --oneline --graph --decorate --all
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)'<%an> %Creset' --abbrev-commit
+[difftool "Kaleidoscope"]
+	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[diff]
+	tool = Kaleidoscope
