@@ -45,13 +45,18 @@ ZSH_THEME="chaserx"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler vagrant)
+plugins=(git github hub bundler vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/Users/chase/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/packer:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/X11/bin"
+export GOROOT=/usr/local/Cellar/go/1.4/libexec/
+
+export PATH="/Users/chase/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/packer:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/X11/bin:$GOROOT/bin"
+
+export GOPATH="/Users/chase/code"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -80,5 +85,22 @@ export ARCHFLAGS="-arch x86_64"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -lah"
 alias pyss="python -m SimpleHTTPServer"
-alias vup="vagrant up"
-alias vdn="vagrant suspend"
+alias vup="chef exec vagrant up"
+alias vdn="chef exec vagrant suspend"
+alias vsh="chef exec vagrant ssh"
+alias vx="chef exec vagrant destroy"
+alias vr="chef exec vagrant reload"
+alias vpr="chef exec vagrant reload --provision"
+alias v="vagrant"
+alias ce="chef exec"
+alias beru="bundle exec rubocop"
+
+fortune | cowsay | lolcat
+
+hub_path=$(which hub)
+if (( $+commands[hub] ))
+then
+  alias git=$hub_path
+fi
+
+eval "$(hub alias -s)"
