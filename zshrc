@@ -91,7 +91,7 @@ alias vsh="chef exec vagrant ssh"
 alias vx="chef exec vagrant destroy"
 alias vr="chef exec vagrant reload"
 alias vpr="chef exec vagrant reload --provision"
-alias v="vagrant"
+alias v="chef exec vagrant"
 alias ce="chef exec"
 alias beru="bundle exec rubocop"
 
