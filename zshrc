@@ -94,6 +94,7 @@ alias vpr="chef exec vagrant reload --provision"
 alias v="chef exec vagrant"
 alias ce="chef exec"
 alias beru="bundle exec rubocop"
+alias fs='foreman start'
 
 fortune | cowsay | lolcat
 
