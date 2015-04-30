@@ -97,6 +97,7 @@ alias ce="chef exec"
 alias beru="bundle exec rubocop"
 alias fs='foreman start'
 alias gcm='git checkout master'
+alias meh="echo '¯\_(ツ)_/¯' | tee >(pbcopy)"
 
 fortune | cowsay | lolcat
 
