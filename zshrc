@@ -98,6 +98,9 @@ alias beru="bundle exec rubocop"
 alias fs='foreman start'
 alias gcm='git checkout master'
 alias meh="echo '¯\_(ツ)_/¯' | tee >(pbcopy)"
+alias chase_git='git config user.name "Chase Southard"; git config user.email "chase.southard@gmail.com"'
+alias sarah_git='git config user.name "Sarah Vessels"; git config user.email "cheshire137@gmail.com"'
+alias mkl_git='git config user.name "Michael Bates"; git config user.email "mklbtz@gmail.com"'
 
 fortune | cowsay | lolcat
 
