@@ -51,7 +51,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export GOROOT=/usr/local/Cellar/go/1.4/libexec/
+export GOROOT=/usr/local/Cellar/go/1.4.2/libexec/
 
 export PATH="/Users/chase/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/packer:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/X11/bin:$GOROOT/bin"
 
