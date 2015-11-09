@@ -56,6 +56,10 @@ export GOROOT=/usr/local/Cellar/go/1.4.2/libexec/
 export PATH="/Users/chase/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/packer:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/X11/bin:$GOROOT/bin"
 
 export GOPATH="/Users/chase/code"
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/Users/chase/.docker/machine/machines/default"
+export DOCKER_MACHINE_NAME="default"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
