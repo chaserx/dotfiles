@@ -3,9 +3,11 @@
 [user]
         name = Chase Southard
         email = chase.southard@gmail.com
+        signingkey = 6ABB5A5AE486C5D0
 [core]
         excludesfile = /Users/chase/.gitignore_global
         pager = less -FXRS -x2
+        editor = vim
 [alias]
         st = status
         di = diff
@@ -24,7 +26,8 @@
         squash = commit --squash
         unstage = reset HEAD
         rum = rebase
-         l1 = log --oneline --graph --decorate --all
+        l1 = log --oneline --graph --decorate --all
+        cleanup = !git branch --merged master | egrep -v '\\s+master$' | xargs git branch -d
 [apply]
         whitespace = nowarn
 [color]
@@ -57,11 +60,15 @@
 [merge]
         tool = Kaleidoscope
 [filter "media"]
-	required = true
-	clean = git media clean %f
-	smudge = git media smudge %f
-
+        required = true
+        clean = git media clean %f
+        smudge = git media smudge %f
 [filter "hawser"]
-	clean = git hawser clean %f
-	smudge = git hawser smudge %f
+        clean = git hawser clean %f
+        smudge = git hawser smudge %f
+        required = true
+[filter "lfs"]
 	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
