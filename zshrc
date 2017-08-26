@@ -45,21 +45,33 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git github hub bundler vagrant)
+plugins=(git github hub bundler)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export GOROOT=/usr/local/Cellar/go/1.4.2/libexec/
+export GOROOT=/usr/local/opt/go/libexec/bin
+export PATH="/Users/chase/miniconda2/bin:/Users/chase/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/packer:/opt/X11/bin:/usr/X11/bin:$GOROOT/bin:/usr/local/etc/personal_ctags"
+export PATH="$PATH:`yarn global bin`"
+export PATH="$HOME/.cargo/bin:$PATH"
 
-export PATH="/Users/chase/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/packer:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/X11/bin:$GOROOT/bin"
+export GOPATH="/Users/chase/go_code"
 
-export GOPATH="/Users/chase/code"
-export DOCKER_TLS_VERIFY="1"
-export DOCKER_HOST="tcp://192.168.99.100:2376"
-export DOCKER_CERT_PATH="/Users/chase/.docker/machine/machines/default"
-export DOCKER_MACHINE_NAME="default"
+# export DOCKER_TLS_VERIFY="1"
+# export DOCKER_HOST="tcp://192.168.99.100:2376"
+# export DOCKER_CERT_PATH="/Users/chase/.docker/machine/machines/default"
+# export DOCKER_MACHINE_NAME="default"
+
+# these need to be unset to use Docker for Mac
+unset DOCKER_TLS_VERIFY
+unset DOCKER_CERT_PATH
+unset DOCKER_MACHINE_NAME
+unset DOCKER_HOST
+
+# for Rust/Cargo SSL build error http://stackoverflow.com/a/34615626/281699
+export OPENSSL_INCLUDE_DIR=`brew --prefix openssl`/include
+export DEP_OPENSSL_INCLUDE=${OPENSSL_INCLUDE_DIR}
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -72,6 +84,8 @@ export DOCKER_MACHINE_NAME="default"
 # else
 #   export EDITOR='mvim'
 # fi
+
+export EDITOR='vim'
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
@@ -86,18 +100,11 @@ export ARCHFLAGS="-arch x86_64"
 #
 # Example aliases
 alias zshconfig="subl ~/.zshrc"
+alias rezsh="source ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -lah"
+alias ltr="ls -ltr"
 alias pyss="python -m SimpleHTTPServer"
-alias vup="chef exec vagrant up"
-alias vdn="chef exec vagrant suspend"
-alias vs="chef exec vagrant suspend"
-alias vsh="chef exec vagrant ssh"
-alias vx="chef exec vagrant destroy"
-alias vr="chef exec vagrant reload"
-alias vpr="chef exec vagrant reload --provision"
-alias v="chef exec vagrant"
-alias ce="chef exec"
 alias beru="bundle exec rubocop"
 alias fs='foreman start'
 alias gcm='git checkout master'
@@ -105,6 +112,10 @@ alias meh="echo '¯\_(ツ)_/¯' | tee >(pbcopy)"
 alias chase_git='git config user.name "Chase Southard"; git config user.email "chase.southard@gmail.com"'
 alias sarah_git='git config user.name "Sarah Vessels"; git config user.email "cheshire137@gmail.com"'
 alias mkl_git='git config user.name "Michael Bates"; git config user.email "mklbtz@gmail.com"'
+alias weather="curl -s wttr.in | sed -n 3,7p"
+alias dcra="docker-compose run app"
+alias kuse="kubectl config set current-context"
+alias dad="curl -s -H 'Accept: text/plain' https://icanhazdadjoke.com/"
 
 fortune | cowsay | lolcat
 
@@ -115,7 +126,20 @@ then
 fi
 
 eval "$(hub alias -s)"
+eval "$(thefuck --alias)"
 
 bindkey -e
 bindkey '^[[1;9C' forward-word
 bindkey '^[[1;9D' backward-word
+
+LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
+  . $LUNCHY_DIR/lunchy-completion.zsh
+fi
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/chase/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/chase/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/chase/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/chase/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh
