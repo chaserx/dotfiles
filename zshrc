@@ -51,12 +51,13 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export GOROOT=/usr/local/opt/go/libexec/bin
-export PATH="/Users/chase/miniconda2/bin:/Users/chase/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/packer:/opt/X11/bin:/usr/X11/bin:$GOROOT/bin:/usr/local/etc/personal_ctags"
+export PATH="/Users/chase/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/packer:/opt/X11/bin:/usr/X11/bin:/usr/local/etc/personal_ctags"
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="$PATH:`yarn global bin`"
 export PATH="$HOME/.cargo/bin:$PATH"
-
-export GOPATH="/Users/chase/go_code"
+export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 
 # export DOCKER_TLS_VERIFY="1"
 # export DOCKER_HOST="tcp://192.168.99.100:2376"
@@ -85,6 +86,7 @@ export DEP_OPENSSL_INCLUDE=${OPENSSL_INCLUDE_DIR}
 #   export EDITOR='mvim'
 # fi
 
+export TERM=xterm-256color
 export EDITOR='vim'
 
 # Compilation flags
@@ -112,10 +114,14 @@ alias meh="echo '¯\_(ツ)_/¯' | tee >(pbcopy)"
 alias chase_git='git config user.name "Chase Southard"; git config user.email "chase.southard@gmail.com"'
 alias sarah_git='git config user.name "Sarah Vessels"; git config user.email "cheshire137@gmail.com"'
 alias mkl_git='git config user.name "Michael Bates"; git config user.email "mklbtz@gmail.com"'
-alias weather="curl -s wttr.in | sed -n 3,7p"
+alias weather="curl -s wttr.in/lex | sed -n 3,7p"
 alias dcra="docker-compose run app"
 alias kuse="kubectl config set current-context"
-alias dad="curl -s -H 'Accept: text/plain' https://icanhazdadjoke.com/"
+alias dad="curl -s -H 'Accept: text/plain' https://icanhazdadjoke.com/; echo"
+alias rake='noglob rake'
+alias pyss3="python3 -m http.server"
+alias k="kubectl"
+alias octobox-build="docker-compose -f docker-compose-dev.yml up --build"
 
 fortune | cowsay | lolcat
 
@@ -143,3 +149,13 @@ fi
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /Users/chase/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/chase/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+into_fuzzy_vim () { vim $(fzf); }
+zle -N into_fuzzy_vim
+bindkey -s '^p' into_fuzzy_vim
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
