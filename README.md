@@ -19,4 +19,4 @@ options:
 
 ## license
 
-wtfpl
+unlicense
