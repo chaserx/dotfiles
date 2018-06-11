@@ -53,6 +53,7 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/Users/chase/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/packer:/opt/X11/bin:/usr/X11/bin:/usr/local/etc/personal_ctags"
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH="/usr/local/opt/node@8/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="$PATH:`yarn global bin`"
 export PATH="$HOME/.cargo/bin:$PATH"
