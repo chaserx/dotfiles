@@ -45,7 +45,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git github hub bundler)
+plugins=(git github bundler)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -53,12 +53,14 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/Users/chase/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/packer:/opt/X11/bin:/usr/X11/bin:/usr/local/etc/personal_ctags"
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
-export PATH="/usr/local/opt/node@8/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-export PATH="$PATH:`yarn global bin`"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+if [ -d ~/bin ] ; then
+    PATH=~/bin:"${PATH}"
+fi
+PATH="/usr/local/sbin:$PATH"
 
 # export DOCKER_TLS_VERIFY="1"
 # export DOCKER_HOST="tcp://192.168.99.100:2376"
@@ -122,7 +124,11 @@ alias dad="curl -s -H 'Accept: text/plain' https://icanhazdadjoke.com/; echo"
 alias rake='noglob rake'
 alias pyss3="python3 -m http.server"
 alias k="kubectl"
-alias octobox-build="docker-compose -f docker-compose-dev.yml up --build"
+alias octobox-build="docker-compose up --build"
+alias goop="cd ~/outside_projects"
+alias gomt="cd ~/maketime"
+alias gox="cd ~/xometry"
+alias did="vim +'normal Go' +'r!date' ~/did.txt"
 
 fortune | cowsay | lolcat
 
@@ -160,3 +166,6 @@ zle -N into_fuzzy_vim
 bindkey -s '^p' into_fuzzy_vim
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
