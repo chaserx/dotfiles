@@ -1,4 +1,9 @@
 execute pathogen#infect()
+call plug#begin('~/.vim/plugged')
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'danishprakash/vim-githubinator'
+call plug#end()
 syntax on
 filetype plugin indent on
 
@@ -48,9 +53,9 @@ set nojoinspaces
 colorscheme jellybeans
 
 " Make it obvious where 80 characters is
-set textwidth=80
-set colorcolumn=80
-highlight ColorColumn ctermbg=7
+" set textwidth=80
+" set colorcolumn=80
+" highlight ColorColumn ctermbg=7
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -58,3 +63,14 @@ set splitright
 
 set cursorline
 highlight CursorLine ctermbg=235 cterm=none
+
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+
