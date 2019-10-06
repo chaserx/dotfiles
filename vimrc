@@ -1,8 +1,15 @@
-execute pathogen#infect()
 call plug#begin('~/.vim/plugged')
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'danishprakash/vim-githubinator'
+Plug 'nanotech/jellybeans.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'rhysd/vim-gfm-syntax'
+Plug 'airblade/vim-gitgutter'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-surround'
 call plug#end()
 syntax on
 filetype plugin indent on
@@ -73,4 +80,5 @@ endfun
 
 autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
-
+" Get to fzf more quickly
+nnoremap <C-p> :FZF<cr>
