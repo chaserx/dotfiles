@@ -1,3 +1,9 @@
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -16,6 +22,8 @@ Plug 'rhysd/vim-gfm-syntax'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
+Plug 'plasticboy/vim-markdown'
+Plug 'junegunn/limelight.vim'
 call plug#end()
 syntax on
 filetype plugin indent on
@@ -25,6 +33,7 @@ set nobackup
 set nowritebackup
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
 set history=50
+set undolevels=1000
 set ruler         " show the cursor position all the time
 set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
@@ -47,6 +56,16 @@ set hidden                        " Handle multiple buffers better.
 set wildmenu                        " Enhanced command line completion.
 set wildmode=list:longest,list:full " Complete files like a shell.
 
+" Files to ignore
+" Python
+set wildignore+=*.pyc,*.pyo,*/__pycache__/*
+" Erlang
+set wildignore+=*.beam
+" Temp files
+set wildignore+=*.swp,~*
+" Archives
+set wildignore+=*.zip,*.tar
+
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains a capital letter.
 
@@ -55,7 +74,7 @@ set tabstop=2
 set shiftwidth=2
 set shiftround
 set expandtab
-
+autocmd Filetype py setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
@@ -88,3 +107,7 @@ autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <
 
 " Get to fzf more quickly
 nnoremap <C-p> :FZF<cr>
+" Remap escape
+inoremap jk <Esc>
+" fzf
+set rtp+=/usr/local/opt/fzf

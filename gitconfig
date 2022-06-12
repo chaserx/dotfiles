@@ -1,19 +1,21 @@
 [github]
         user = chaserx
 [user]
-        name = Chase Southard
-        email = chase.southard@gmail.com
-        signingkey = 6ABB5A5AE486C5D0
+	name = Chase Southard
+	email = csouthard@gitlab.com
+	signingkey = 90F4AA1F6F4DEC80
 [core]
         excludesfile = /Users/chase/.gitignore_global
         pager = less -FXRS -x2
         editor = vim
+        autocrlf = input
 [alias]
         st = status
         di = diff
         co = checkout
+        sw = switch
         ci = commit
-        br = branch
+        fb = !git switch $(git branch --sort=-committerdate --format='%(refname:short)' | fzf -e --query $1 )
         sta = stash
         llog = log --date=local
         flog = log --pretty=fuller --decorate
@@ -25,9 +27,9 @@
         fixup = commit --fixup
         squash = commit --squash
         unstage = reset HEAD
-        rum = rebase
         l1 = log --oneline --graph --decorate --all
         cleanup = !git branch --merged master | egrep -v '\\s+master$' | xargs git branch -d
+        pf = push --force-with-lease
 [apply]
         whitespace = nowarn
 [color]
@@ -38,6 +40,7 @@
         ui = auto
 [branch]
         autosetupmerge = true
+        sort = -committerdate
 [rebase]
         autosquash = true
 [credential]
@@ -72,3 +75,5 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[init]
+	defaultBranch = main

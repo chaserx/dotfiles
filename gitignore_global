@@ -2,6 +2,7 @@
 ####################
 .idea
 .todo
+.vscode
 
 # OS generated files #
 ######################
@@ -19,4 +20,8 @@ tags
 !tags/
 .tags
 .gemtags
+
 .tags_sorted_by_file
+
+# ASDF 
+.tool-versions

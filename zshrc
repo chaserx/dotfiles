@@ -5,7 +5,9 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="chaserx"
+#ZSH_THEME="my_muse"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="spaceship"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -45,23 +47,28 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git github bundler)
+plugins=(git github bundler shrink-path)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-export PATH="/Users/chase/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/packer:/opt/X11/bin:/usr/X11/bin:/usr/local/etc/personal_ctags"
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH="/Users/chase/.asdf/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/packer:/opt/X11/bin:/usr/X11/bin:/usr/local/etc/personal_ctags"
+export PATH="$PATH:/usr/local/opt/go/libexec/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 if [ -d ~/bin ] ; then
     PATH=~/bin:"${PATH}"
 fi
-PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
+# GitLab Specific
+# this is useful for running gitlab self-managed locally via docker
+export GITLAB_HOME=$HOME/gitlab
+
+## DOCKER 
 # export DOCKER_TLS_VERIFY="1"
 # export DOCKER_HOST="tcp://192.168.99.100:2376"
 # export DOCKER_CERT_PATH="/Users/chase/.docker/machine/machines/default"
@@ -104,7 +111,7 @@ export ARCHFLAGS="-arch x86_64"
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="subl ~/.zshrc"
+alias zshconfig="vim ~/.zshrc"
 alias rezsh="source ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -lah"
@@ -114,9 +121,10 @@ alias beru="bundle exec rubocop"
 alias fs='foreman start'
 alias gcm='git checkout master'
 alias meh="echo '¯\_(ツ)_/¯' | tee >(pbcopy)"
-alias chase_git='git config user.name "Chase Southard"; git config user.email "chase.southard@gmail.com"'
+alias chase_git='git config user.name "Chase Southard"; git config user.email "chase.southard@gmail.com"; git config user.signingkey "57F0B333FA0CF50B"'
 alias sarah_git='git config user.name "Sarah Vessels"; git config user.email "cheshire137@gmail.com"'
 alias mkl_git='git config user.name "Michael Bates"; git config user.email "mklbtz@gmail.com"'
+alias gl_git='git config user.name "Chase Southard"; git config user.email "csouthard@gitlab.com"; git config user.signingkey "90F4AA1F6F4DEC80"'
 alias weather="curl -s wttr.in/lex | sed -n 3,7p"
 alias dcra="docker-compose run app"
 alias kuse="kubectl config set current-context"
@@ -126,11 +134,14 @@ alias pyss3="python3 -m http.server"
 alias k="kubectl"
 alias octobox-build="docker-compose up --build"
 alias goop="cd ~/outside_projects"
-alias gomt="cd ~/maketime"
-alias gox="cd ~/xometry"
+alias gtw="cd ~/work"
 alias did="vim +'normal Go' +'r!date' ~/did.txt"
+alias gsw="git switch"
+alias restartAlfred="osascript -e 'tell application \"Alfred 4\" to quit';open -a \"Alfred 4\""
+alias tf="terraform"
+alias tn="date -u \"+%H:%M:%S\" | pbcopy"
+alias dtn="date -u \"+%Y-%m-%d @ %H:%M\" | pbcopy; echo 'UTC timestamp copied to clipboard'"
 
-fortune | cowsay | lolcat
 
 hub_path=$(which hub)
 if (( $+commands[hub] ))
@@ -144,11 +155,13 @@ eval "$(thefuck --alias)"
 bindkey -e
 bindkey '^[[1;9C' forward-word
 bindkey '^[[1;9D' backward-word
+bindkey "\e\e[D" backward-word
+bindkey "\e\e[C" forward-word
 
-LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
-if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
-  . $LUNCHY_DIR/lunchy-completion.zsh
-fi
+# LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+# if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
+#  . $LUNCHY_DIR/lunchy-completion.zsh
+#fi
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
@@ -167,5 +180,25 @@ bindkey -s '^p' into_fuzzy_vim
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+#export NVM_DIR="$HOME/.nvm"
+#. "/usr/local/opt/nvm/nvm.sh"
+
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+# . $HOME/.asdf/asdf.sh
+
+# zsh autocomplete https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(starship init zsh)"
+
+#  fortune | cowsay | lolcat
+. $HOME/.asdf/asdf.sh
+source ~/.iterm2_shell_integration.zsh
