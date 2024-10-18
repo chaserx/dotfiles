@@ -11,7 +11,9 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug '/usr/local/opt/fzf'
+" Plug '/usr/local/opt/fzf'
+" Plug '/opt/homebrew/bin/fz'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'danishprakash/vim-githubinator'
 Plug 'nanotech/jellybeans.vim'
@@ -24,6 +26,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
 Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/limelight.vim'
+Plug 'shumphrey/fugitive-gitlab.vim'
 call plug#end()
 syntax on
 filetype plugin indent on

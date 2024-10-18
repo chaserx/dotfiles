@@ -1,9 +1,6 @@
 [github]
         user = chaserx
-[user]
-	name = Chase Southard
-	email = csouthard@gitlab.com
-	signingkey = 90F4AA1F6F4DEC80
+  #signingkey = 90F4AA1F6F4DEC80
 [core]
         excludesfile = /Users/chase/.gitignore_global
         pager = less -FXRS -x2
@@ -30,8 +27,6 @@
         l1 = log --oneline --graph --decorate --all
         cleanup = !git branch --merged master | egrep -v '\\s+master$' | xargs git branch -d
         pf = push --force-with-lease
-[apply]
-        whitespace = nowarn
 [color]
         branch = auto
         diff = auto
@@ -47,6 +42,7 @@
         helper = osxkeychain
 [push]
         default = current
+	autoSetupRemote = true
 [pull]
         default = current
 [difftool "Kaleidoscope"]
@@ -77,3 +73,13 @@
 	process = git-lfs filter-process
 [init]
 	defaultBranch = main
+[includeIf "gitdir:~/outside/"]
+  path = ~/.gitconfig-personal
+[includeIf "gitdir:~/work/"]
+  path = ~/.gitconfig-work
+[maintenance]
+	repo = /Users/chase/work/gitlab-development-kit
+	repo = /Users/chase/work/gitlab-development-kit/gitlab
+[user]
+	email = csouthard@gitlab.com
+	name = Chase Southard

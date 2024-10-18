@@ -11,4 +11,8 @@ alias ll='ls -lah'
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-export PATH="$HOME/.cargo/bin:$PATH"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/chase/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+. "$HOME/.cargo/env"

@@ -1,4 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/Users/chase/outside_projects/octobox/app'
-let g:netrw_dirhist_2='/Users/chase/outside_projects/octobox/app/models'
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/Users/chase/work/gitlab-development-kit/gitlab/config/metrics/counts_28d'
+let g:netrw_dirhist_9='/Users/chase/work/gitlab-development-kit/gitlab/config/metrics'
+let g:netrw_dirhist_8='/Users/chase/work/gitlab-development-kit/gitlab-http-router/docs'
+let g:netrw_dirhist_7='/Users/chase/work/gitlab-development-kit/gitlab-http-router/.wrangler'
+let g:netrw_dirhist_6='/Users/chase/work/gitlab-development-kit/gitlab/.git'
+let g:netrw_dirhist_5='/Users/chase/work/til/lessons'
+let g:netrw_dirhist_4='/Users/chase/work/gitlab-development-kit/gitlab-http-router/docs'
+let g:netrw_dirhist_3='/Users/chase/work/gitlab-development-kit/sv/gitlab-http-router/log/supervise'
+let g:netrw_dirhist_2='/Users/chase/.asdf'
+let g:netrw_dirhist_1='/Users/chase/work/www-gitlab-com/data/release_posts/unreleased/samples'
